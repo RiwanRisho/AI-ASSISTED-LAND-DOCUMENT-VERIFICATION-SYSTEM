@@ -1,0 +1,26 @@
+[
+  {
+    "caseId": "LG-DEMO-001",
+    "label": "Survey substitution signal",
+    "mode": "synthetic",
+    "documents": ["PATTA", "CHITTA", "ENCUMBRANCE CERTIFICATE", "SALE DEED"],
+    "expectedRisk": "HIGH",
+    "notes": "Synthetic-only benchmark: EC points to 128/4A while the revenue records and sale deed point to 128/4B."
+  },
+  {
+    "caseId": "LG-DEMO-002",
+    "label": "Consistent ownership chain",
+    "mode": "synthetic",
+    "documents": ["PATTA", "CHITTA", "ENCUMBRANCE CERTIFICATE", "SALE DEED"],
+    "expectedRisk": "LOW",
+    "notes": "Synthetic-only clean case for regression testing."
+  },
+  {
+    "caseId": "LG-DEMO-003",
+    "label": "Duplicate application signal",
+    "mode": "synthetic",
+    "documents": ["PATTA", "SALE DEED", "SALE DEED"],
+    "expectedRisk": "HIGH",
+    "notes": "Synthetic-only duplicate fingerprint test."
+  }
+]

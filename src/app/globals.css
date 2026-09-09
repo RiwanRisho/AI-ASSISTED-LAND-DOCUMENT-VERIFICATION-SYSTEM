@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tn-maroon: #7a1f2b;
+  --tn-maroon-dark: #5d1520;
+  --tn-gold: #c79a32;
+  --tn-gold-soft: #f3e5bd;
+  --tn-navy: #0b2a3f;
+  --tn-cream: #f4f1e8;
+  --tn-paper: #fffdf8;
+  --tn-line: #ded7c7;
+  --tn-text: #17212b;
+  --tn-muted: #66727d;
+  --tn-green: #1f7a4d;
+  --tn-red: #a52b39;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 90% -10%, rgba(199,154,50,.12), transparent 30%),
+    linear-gradient(180deg, #f8f6ef 0%, var(--tn-cream) 100%);
+  color: var(--tn-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+button, input, select, textarea { font: inherit; }
+::selection { background: rgba(122,31,43,.16); }
+
+.glass {
+  background: linear-gradient(180deg, rgba(255,253,248,.98), rgba(250,248,241,.98));
+  border: 1px solid var(--tn-line);
+  box-shadow: 0 16px 42px rgba(48,35,20,.08);
+  backdrop-filter: blur(12px);
+}
+.gridbg {
+  background-image:
+    linear-gradient(rgba(122,31,43,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122,31,43,.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.pulse { animation: pulse 2s infinite; }
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(122,31,43,.12); }
+  50% { box-shadow: 0 0 0 9px rgba(122,31,43,0); }
+}
+
+/* Tamil Nadu Government-inspired visual system.
+   These overrides change presentation only; application logic and data remain untouched. */
+[class~="text-cyan-300"], [class~="text-cyan-200"], [class~="text-cyan-400"] { color: var(--tn-maroon) !important; }
+[class~="bg-cyan-300"] { background-color: var(--tn-maroon) !important; }
+[class~="bg-cyan-300/10"], [class~="bg-cyan-400/10"] { background-color: rgba(122,31,43,.07) !important; }
+[class~="border-cyan-300/30"], [class~="border-cyan-400/30"], [class~="border-cyan-300/40"] { border-color: rgba(122,31,43,.25) !important; }
+[class~="border-cyan-950"] { border-color: var(--tn-line) !important; }
+[class~="focus:border-cyan-400"]:focus { border-color: var(--tn-maroon) !important; }
+[class~="bg-black/15"], [class~="bg-black/20"] { background-color: rgba(11,42,63,.035) !important; }
+[class~="bg-[#050b0f]/90"] { background-color: rgba(255,253,248,.96) !important; }
+[class~="bg-[#071419]"] { background-color: #f1eee5 !important; }
+[class~="bg-[#061118]"] { background-color: #fffdf8 !important; color: var(--tn-text) !important; }
+[class~="bg-[#061014]"] { background-color: var(--tn-navy) !important; }
+[class~="text-slate-950"][class~="bg-cyan-300"] { color: #fff !important; }
+[class~="text-slate-400"] { color: #66727d !important; }
+[class~="text-slate-500"] { color: #74808a !important; }
+[class~="text-slate-600"] { color: #89939a !important; }
+[class~="text-slate-300"] { color: #3d4b57 !important; }
+[class~="text-slate-200"] { color: #24313b !important; }
+[class~="text-white"] { color: #fff !important; }
+[class~="bg-slate-900"] { background-color: #dfe3e5 !important; }
+
+/* Keep semantic status colors intact, but make them more government-portal friendly. */
+[class~="text-emerald-300"], [class~="text-emerald-200"] { color: var(--tn-green) !important; }
+[class~="bg-emerald-400/5"] { background-color: rgba(31,122,77,.06) !important; }
+[class~="border-emerald-400/20"] { border-color: rgba(31,122,77,.2) !important; }
+[class~="text-amber-300"], [class~="text-amber-200"], [class~="text-amber-100"] { color: #8a6715 !important; }
+[class~="bg-amber-300/5"], [class~="bg-amber-400/10"] { background-color: rgba(199,154,50,.08) !important; }
+[class~="border-amber-300/30"], [class~="border-amber-400/20"], [class~="border-amber-300/20"], [class~="border-amber-300/10"] { border-color: rgba(199,154,50,.3) !important; }
+[class~="text-red-300"] { color: var(--tn-red) !important; }
+
+/* Official-portal style scrollbars */
+* { scrollbar-width: thin; scrollbar-color: #b9b2a4 transparent; }
+*::-webkit-scrollbar { width: 9px; height: 9px; }
+*::-webkit-scrollbar-thumb { background: #b9b2a4; border-radius: 999px; }
+*::-webkit-scrollbar-track { background: transparent; }
