@@ -1,41 +1,52 @@
 # LandGuard AI — Final Hackathon Submission
 
+**🚀 Live Demo:** https://landguard-ai-opal.vercel.app
+
 LandGuard AI is a Tamil Nadu-focused AI-assisted land-document intake and reconciliation prototype. It extracts structured fields from Patta, Chitta, Encumbrance Certificate and Sale Deed submissions, cross-checks them for inconsistencies, explains risk signals, resolves spatial context, stores cases in MongoDB, and keeps human authority as the final decision gate.
+
+## 🚀 LandGuard AI — Live Demo
+
+👉 **https://landguard-ai-opal.vercel.app**
+
+Open the live application directly in your browser. No installation or login is required for the public prototype.
 
 ## Included
 
 - Sequential document intake: Patta, Chitta, Sale Deed and Encumbrance Certificate
-- PDF/image extraction and browser OCR
+- PDF/image document extraction
+- Browser-based OCR using Tesseract.js
 - Automated cross-document discrepancy matrix
 - Explainable field-level mismatch detection
 - Risk score and severity engine
-- LandTrace spatial review with satellite/street layers
-- Official TNGIS viewer links
+- LandTrace spatial review with satellite/street map layers
+- Official TNGIS viewer hand-off links
 - MongoDB case storage
 - Case management and workflow status
 - Case report generation
 - Analytics dashboard
 - Duplicate/similarity detection
-- Audit trail and human-in-the-loop decisions
+- Audit trail
+- Human-in-the-loop decision workflow
 - Dataset Vault with JSON/CSV export
 
 ## Tech Stack
 
-Next.js 15, React 19, TypeScript, Tailwind CSS, Leaflet, MongoDB, PDF.js and Tesseract.js.
+- Next.js 15
+- React 19
+- TypeScript
+- Tailwind CSS
+- Leaflet
+- MongoDB Atlas
+- PDF.js
+- Tesseract.js
+- Node.js
+- Vercel
 
-## Setup
+## Public Prototype Workflow
 
-1. Install Node.js 20+.
-2. Extract this project.
-3. Run `npm install`.
-4. Copy `.env.example` to `.env.local`.
-5. Put your MongoDB Atlas connection values in `.env.local`.
-6. Run `npm run dev`.
-7. Open the local URL shown by Next.js.
+No login or demo credentials are required.
 
-## Public prototype workflow
-
-No login or demo credentials are required. The intended flow is:
+The intended workflow is:
 
 1. Start a new case.
 2. Select a document type.
@@ -44,34 +55,114 @@ No login or demo credentials are required. The intended flow is:
 5. Add the remaining records sequentially.
 6. Run the cross-document check.
 7. Review the Automated Discrepancy Matrix.
-8. Open LandTrace and, when appropriate, hand off to the official TNGIS viewer.
-9. Choose APPROVE / HOLD FOR REVIEW / RETURN FOR CORRECTION.
-10. Save the case to MongoDB and inspect it in Case Management / Analytics.
+8. Open LandTrace for spatial context.
+9. When appropriate, hand off to the official TNGIS viewer.
+10. Choose APPROVE / HOLD FOR REVIEW / RETURN FOR CORRECTION.
+11. Save the case to MongoDB.
+12. Inspect the case through Case Management and Analytics.
 
-The **LOAD JUDGE DEMO** button loads a synthetic scenario for a fast presentation.
+The **LOAD JUDGE DEMO** button can be used to quickly load a synthetic demonstration scenario during a presentation.
 
-## Production safety
+## Core Features
 
-- Never commit `.env.local` or database credentials.
-- Do not use this prototype to make legal land-registration decisions.
-- Exact cadastral boundaries must come from an authorized cadastral/Tamil Nilam/TNGIS source; LandGuard does not fabricate them.
-- Use synthetic/de-identified data for demonstrations.
-- AI findings are review signals; human authority remains the final decision gate.
+### Document Intelligence
 
-## Build validation
+Extracts important land attributes such as:
 
-Run:
+- District
+- Taluk
+- Village
+- Survey Number
+- Sub-Division
+- Owner / Executant Name
+- Land Extent
+- Document Number
+- Registration Date
+- Geographic coordinates when available
 
-```bash
-npm run build
-```
+### Cross-Document Reconciliation
 
-Then, if the build succeeds:
+LandGuard AI compares information across submitted records and identifies conflicts such as:
 
-```bash
-npm start
-```
+- Survey number mismatch
+- Sub-division mismatch
+- Ownership/name mismatch
+- Land extent mismatch
+- Property address mismatch
+- Encumbrance-related discrepancies
 
-## Disclaimer
+The system highlights the specific field and documents involved instead of simply returning a generic verification failure.
 
-LandGuard AI is a hackathon/public prototype and is not an official Government of Tamil Nadu service.
+### Automated Discrepancy Matrix
+
+The reconciliation view provides:
+
+- Survey Number
+- Sub-Division
+- Property Address
+- Land Extent
+- Owner / Executant Name
+- MATCH / CONFLICT status
+- Audit diagnostics
+- Review notes
+
+### LandTrace
+
+LandTrace provides spatial context for a land record.
+
+When valid geographic coordinates are available, the location can be visualized on map and satellite layers.
+
+For authoritative cadastral verification, the system provides a hand-off toward the official GIS environment rather than fabricating parcel boundaries.
+
+### Case Management
+
+Cases can be stored with:
+
+- Case ID
+- Document information
+- Extracted fields
+- Reconciliation results
+- Risk information
+- Decision status
+- Assigned officer / intake identity
+- Timestamps
+- Audit information
+
+### Analytics
+
+The dashboard provides an overview of:
+
+- Total cases
+- Document intake
+- Detected discrepancies
+- Critical issues
+- Case outcomes
+- Review activity
+
+### Dataset Vault
+
+The Dataset Vault supports demonstration and testing data, including:
+
+- Clean cases
+- Ownership mismatches
+- Survey-number mismatches
+- Subdivision conflicts
+- Encumbrance discrepancies
+
+The bundled demonstration records are synthetic hackathon data.
+
+## Setup
+
+1. Install Node.js 20+.
+2. Clone or extract this project.
+3. Run `npm install`.
+4. Copy `.env.example` to `.env.local`.
+5. Add your MongoDB Atlas connection values.
+6. Run `npm run dev`.
+7. Open the local URL shown by Next.js.
+
+Example environment configuration:
+
+```env
+MONGODB_URI=your_mongodb_atlas_connection_string
+MONGODB_DB=landguard
