@@ -50,9 +50,6 @@ export async function PATCH(
     }
 
     const db = await getDb();
-
-    // Use an explicitly typed collection so MongoDB's update operators
-    // accept the dynamic case document structure.
     const cases = db.collection<any>('cases');
 
     const auditEntry = {
@@ -64,14 +61,14 @@ export async function PATCH(
     };
 
     const result = await cases.updateOne(
-  { caseId },
-  {
-    $set: allowed,
-    $push: {
-      auditTrail: auditEntry,
-    },
-  } as any
-);
+      { caseId },
+      {
+        $set: allowed,
+        $push: {
+          auditTrail: auditEntry,
+        },
+      } as any
+    );
 
     if (!result.matchedCount) {
       return NextResponse.json(
